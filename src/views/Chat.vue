@@ -7,7 +7,7 @@
 
 <script>
 import axios from '@/utils/axios-instance'
-import Rooms from '../components/Rooms'
+import Rooms from '@/components/Rooms'
 
 export default {
     name: "chat",
