@@ -1,0 +1,34 @@
+<template>
+    <div id="issue">
+        <h1>{{issueWithPills.issue.title}}</h1>
+        <ListPills :listPills="issueWithPills.pills"></ListPills>
+    </div>
+</template>
+
+<script>
+import axios from '@/utils/axios-instance'
+import ListPills from '@/components/ListPills'
+
+export default {
+    name: 'Issue',
+    data() {
+        return {
+            issueWithPills: {issue: {title: ''}, pills: []}
+        }
+    },
+    components: {
+        ListPills
+    },
+    methods: {
+        loadIssueWithPills() {
+            axios.get('issue/' + this.$route.params.issueId + '/')
+                .then(response => {
+                    this.issueWithPills = response.data
+                });            
+        }
+    },
+    mounted() {
+        this.loadIssueWithPills();
+    }
+}
+</script>
