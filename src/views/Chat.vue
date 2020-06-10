@@ -1,13 +1,13 @@
 <template>
   <div class="chat">
       <h1>LetEmTalk</h1>
-      <Rooms :listRooms="listRooms"></Rooms>
+      <ListRooms :listRooms="listRooms"></ListRooms>
   </div>
 </template>
 
 <script>
 import axios from '@/utils/axios-instance'
-import Rooms from '@/components/Rooms'
+import ListRooms from '@/components/ListRooms'
 
 export default {
     name: "chat",
@@ -17,7 +17,7 @@ export default {
         }
     },
     components: {
-        Rooms
+        ListRooms
     },
     methods: {
         loadRooms() {

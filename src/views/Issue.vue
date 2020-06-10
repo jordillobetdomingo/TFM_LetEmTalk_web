@@ -1,5 +1,6 @@
 <template>
     <div id="issue">
+        <router-link :to="'/room/' + issueWithPills.issue.roomId + '/'"> Back to the room </router-link>
         <h1>{{issueWithPills.issue.title}}</h1>
         <ListPills :listPills="issueWithPills.pills"></ListPills>
     </div>
@@ -13,7 +14,7 @@ export default {
     name: 'Issue',
     data() {
         return {
-            issueWithPills: {issue: {title: ''}, pills: []}
+            issueWithPills: {issue: {title: '', roomId: '0'}, pills: []}
         }
     },
     components: {

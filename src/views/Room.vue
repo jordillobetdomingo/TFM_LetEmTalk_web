@@ -1,5 +1,6 @@
 <template>
     <div id="room">
+        <router-link to="/"> Back </router-link>
         <h1> Room from: {{ roomWithIssues.room.firstName + ' ' + roomWithIssues.room.lastName }}</h1>
         <ListIssues :listIssues="roomWithIssues.issues"></ListIssues>
     </div>

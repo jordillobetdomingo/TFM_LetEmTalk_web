@@ -1,5 +1,5 @@
 <template>
-    <div id="rooms">
+    <div id="ListRooms">
         <div v-for="room in listRooms" :key="room.roomId">
             <router-link :to="'/room/' + room.roomId + '/'">{{room.firstName}}, {{room.lastName}}</router-link>
         </div>
@@ -8,7 +8,7 @@
 
 <script>
 export default {
-    name: 'rooms',
+    name: 'listRooms',
     props: ['listRooms']    
 }
 </script>
