@@ -2,7 +2,9 @@
     <div id="issue">
         <router-link :to="'/room/' + issueWithPills.issue.roomId + '/'"> Back to the room </router-link>
         <h1>{{issueWithPills.issue.title}}</h1>
-        <ListPills :listPills="issueWithPills.pills"></ListPills>
+        <p v-if="issueWithPills.issue.canEdit"> Button of edit and delete issue</p>
+        <p v-if="issueWithPills.issue.canAddPill"> Button of add pill </p>
+        <ListPills :listPills="issueWithPills.pills"> </ListPills>
     </div>
 </template>
 
