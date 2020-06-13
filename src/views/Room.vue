@@ -6,7 +6,12 @@
                 <li class="breadcrumb-item active" aria-current="page"> Room </li>
             </ol>
         </nav>
-        <h1 class="text-center"> Room from: {{ roomWithIssues.room.firstName + ' ' + roomWithIssues.room.lastName }}</h1>
+        <div class="row">
+            <div class="col-12">
+                <h1> Room from: {{ roomWithIssues.room.firstName + ' ' + roomWithIssues.room.lastName }}</h1>
+            </div>
+        </div>
+        <AddIssueForm v-if="roomWithIssues.room.allowCreateIssues" :roomId="roomWithIssues.room.id"></AddIssueForm>
         <ListIssues :listIssues="roomWithIssues.issues"></ListIssues>
     </div>
 </template>
@@ -14,6 +19,7 @@
 <script>
 import axios from '@/utils/axios-instance'
 import ListIssues from '@/components/ListIssues'
+import AddIssueForm from '@/components/AddIssueForm'
 
 export default {
     name: 'room',
@@ -23,7 +29,8 @@ export default {
         }
     },
     components: {
-        ListIssues
+        ListIssues,
+        AddIssueForm
     },
     methods: {
         loadRoomWithIssue() {
@@ -41,3 +48,8 @@ export default {
     }
 }
 </script>
+
+<style>
+
+
+</style>

@@ -5,7 +5,7 @@
                 <li class="breadcrum-item"> Home </li>
             </ol>
         </nav>
-      <h1 class="text-center">LetEmTalk</h1>
+      <h1>LetEmTalk</h1>
       <ListRooms :listRooms="listRooms"></ListRooms>
   </div>
 </template>

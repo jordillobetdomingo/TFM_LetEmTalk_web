@@ -7,7 +7,15 @@
                 <li class="breadcrumb-item active" aria-current="page"> Issue </li>
             </ol>
         </nav>
-        <h1 v-show="!showEditIssueForm" class="text-center">{{issueWithPills.issue.title}}</h1>
+        <div class="row title_box" v-show="!showEditIssueForm">
+            <h1 class="col-10">{{issueWithPills.issue.title}}</h1>
+            <button class='button_issue col-1' v-if="issueWithPills.issue.allowUpdate" @click="showEditForm()">
+                <EditIcon></EditIcon>
+            </button>
+            <button class='button_issue col-1' v-if="issueWithPills.issue.allowDelete" @click="deleteIssue()">
+                <DeleteIcon></DeleteIcon>
+            </button>
+        </div>
         <form v-show="showEditIssueForm">
             <div class="form-group">
                 <input class="form-control" type="text" v-model='newIssueTitle'>
@@ -16,9 +24,10 @@
             <button @click="cancelUpdetaIssueTitle($event)">Cancel</button>
         </form>
         
-        <button v-if="issueWithPills.issue.canEdit" @click="showEditForm()">Edit</button>
-        <button v-if="issueWithPills.issue.canEdit">Delete</button>
-        <button v-if="issueWithPills.issue.canAddPill" @click="this.showFormAddPill = true;">Add</button>
+        
+        <button v-if="issueWithPills.issue.allowCreatePills" @click="this.showFormAddPill = true;">
+            <AddIcon></AddIcon>
+        </button>
         <FormPill v-if="this.showFormAddPill" :pill="{'issueId': issueWithPills.issue.id, 'text': '', 'authorId': null}"></FormPill>
         <ListPills :listPills="issueWithPills.pills"> </ListPills>
     </div>
@@ -28,6 +37,9 @@
 import axios from '@/utils/axios-instance'
 import ListPills from '@/components/ListPills'
 import FormPill from '@/components/FormPill'
+import AddIcon from '@/components/icons/AddIcon'
+import EditIcon from '@/components/icons/EditIcon'
+import DeleteIcon from '@/components/icons/DeleteIcon'
 
 
 export default {
@@ -42,7 +54,10 @@ export default {
     },
     components: {
         ListPills,
-        FormPill
+        FormPill,
+        AddIcon,
+        EditIcon,
+        DeleteIcon
     },
     methods: {
         loadIssueWithPills() {
@@ -57,6 +72,14 @@ export default {
         showEditForm() {
             this.newIssueTitle = this.issueWithPills.issue.title;
             this.showEditIssueForm = true;
+        },
+        deleteIssue() {
+            if (confirm("Are you sure do you want to delete " + this.issueWithPills.issue.title + "?")) {
+                axios.delete("/issue/" + this.issueWithPills.issue.id + "/")
+                .then(() => {
+                    this.$router.push('/room/' + this.issueWithPills.issue.roomId + '/');
+                });
+            }
         },
         cancelUpdetaIssueTitle(event) {
             this.showEditIssueForm = false;
@@ -74,3 +97,21 @@ export default {
     }
 }
 </script>
+
+<style scoped>
+
+h1 {
+    display:inline;
+}
+
+.button_issue {
+    width:48px;
+    height:48px;
+    background-color:white;
+}
+
+.title_box {
+    margin-right: 0;
+    margin-left: 0;
+}
+</style>

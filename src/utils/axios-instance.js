@@ -9,12 +9,12 @@ const service = axios.create({
 service.interceptors.response.use((response) => {
   return response;
 }, function (error) {
+  console.log(error);
   if (error.response.status === 401) {
       console.log('unauthorized, logging out ...');
       router.replace('/login');
   } 
   //return Promise.reject(error.response);
-  console.log(error);
 });
 
 export default service
