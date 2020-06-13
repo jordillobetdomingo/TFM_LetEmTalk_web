@@ -1,9 +1,11 @@
 <template>
     <div id="listPills">
-        <div v-for="pill in listPills" :key="pill.pillId">
+        <div class="card" v-for="pill in listPills" :key="pill.pillId">
+            <div class="card-body">
             <p> {{pill.text}}</p>
             <p> Author: {{ pill.firstNameAuthor + ' ' + pill.lastNameAuthor }}</p>
             <input type="button" v-if="pill.canEdit" value="EditPill" @click="showForm(pill)">
+            </div>
         </div>
         <FormPill v-if="showFormPill" :pill="pillSelected"></FormPill>
     </div>

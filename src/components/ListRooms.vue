@@ -1,7 +1,11 @@
 <template>
     <div id="ListRooms">
         <div v-for="room in listRooms" :key="room.roomId">
-            <router-link :to="'/room/' + room.roomId + '/'">{{room.firstName}}, {{room.lastName}}</router-link>
+            <div class="card">
+                <div class="card-body">
+                    <router-link :to="'/room/' + room.roomId + '/'"><h3>{{room.firstName}}, {{room.lastName}}</h3></router-link>
+                </div>
+            </div>
         </div>
     </div>
 </template>

@@ -1,6 +1,11 @@
 <template>
   <div class="chat">
-      <h1>LetEmTalk</h1>
+      <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrum-item"> Home </li>
+            </ol>
+        </nav>
+      <h1 class="text-center">LetEmTalk</h1>
       <ListRooms :listRooms="listRooms"></ListRooms>
   </div>
 </template>
