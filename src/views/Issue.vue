@@ -23,12 +23,9 @@
             <button @click="updateIssue($event)">Save</button>
             <button @click="cancelUpdetaIssueTitle($event)">Cancel</button>
         </form>
-        
-        
-        <button v-if="issueWithPills.issue.allowCreatePills" @click="this.showFormAddPill = true;">
-            <AddIcon></AddIcon>
-        </button>
         <FormPill v-if="this.showFormAddPill" :pill="{'issueId': issueWithPills.issue.id, 'text': '', 'authorId': null}"></FormPill>
+
+        <AddPillForm v-if="issueWithPills.issue.allowCreatePills" :issueId="issueWithPills.issue.id"></AddPillForm>
         <ListPills :listPills="issueWithPills.pills"> </ListPills>
     </div>
 </template>
@@ -37,7 +34,7 @@
 import axios from '@/utils/axios-instance'
 import ListPills from '@/components/ListPills'
 import FormPill from '@/components/FormPill'
-import AddIcon from '@/components/icons/AddIcon'
+import AddPillForm from '@/components/AddPillForm'
 import EditIcon from '@/components/icons/EditIcon'
 import DeleteIcon from '@/components/icons/DeleteIcon'
 
@@ -55,7 +52,7 @@ export default {
     components: {
         ListPills,
         FormPill,
-        AddIcon,
+        AddPillForm,
         EditIcon,
         DeleteIcon
     },

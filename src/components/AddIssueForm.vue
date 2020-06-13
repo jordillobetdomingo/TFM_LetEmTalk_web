@@ -15,8 +15,8 @@
                     <label for="text">Comment</label>
                     <textarea name="text" class="form-control" v-model="textPill"/>
                 </div>
-                <button @click="addIssue()">Save</button>
-                <button @click="reset()">Cancel</button>
+                <button @click="addIssue($event)">Save</button>
+                <button @click="reset($event)">Cancel</button>
             </form>
         </div>
     </div>
@@ -36,15 +36,15 @@ export default {
     },
     props: {roomId: Number},
     methods: {
-        addIssue() {
-            alert("roomId: " + this.roomId);
+        addIssue(event) {
             axios.post("/issue/", {"roomId": this.roomId,  "title": this.title, "text": this.textPill, "authorId": 13});
-            this.reset();
+            this.reset(event);
         },
-        reset() {
+        reset(event) {
             this.title = '';
             this.textPill = '';
             this.showIssueForm = false;
+            event.preventDefault();
         }
     }
 }
