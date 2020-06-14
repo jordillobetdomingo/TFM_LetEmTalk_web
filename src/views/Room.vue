@@ -20,6 +20,7 @@
 import axios from '@/utils/axios-instance'
 import ListIssues from '@/components/ListIssues'
 import AddIssueForm from '@/components/AddIssueForm'
+import EventBus from '@/utils/event-bus'
 
 export default {
     name: 'room',
@@ -45,6 +46,9 @@ export default {
     },
     mounted() {
         this.loadRoomWithIssue();
+        EventBus.$on('add-issue', (issue) => {
+            this.roomWithIssues.issues.push(issue);
+        });
     }
 }
 </script>

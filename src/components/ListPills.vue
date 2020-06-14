@@ -1,28 +1,26 @@
 <template>
     <div id="listPills">
-        <div class="card" v-for="pill in listPills" :key="pill.pillId">
+        <div class="card" v-for="pill in listPills" :key="pill.id">
             <div class="card-body">
-            <p> {{pill.text}}</p>
-            <p> Author: {{ pill.firstNameAuthor + ' ' + pill.lastNameAuthor }}</p>
-            <input type="button" v-if="pill.allowUpdate" value="EditPill" @click="showForm(pill)">
+                <PillItem :pill="pill"></PillItem>
             </div>
         </div>
-        <FormPill v-if="showFormPill" :pill="pillSelected"></FormPill>
     </div>
 </template>
 
 <script>
-import FormPill from '@/components/FormPill'
+import PillItem from '@/components/PillItem'
+import EventBus from '@/utils/event-bus';
 
 export default {
     name: 'listPills',
     props: ['listPills'],
     components: {
-        FormPill
+        PillItem
     },
     data() {
         return {
-            showFormPill: false,
+            showEditPillForm: false,
             pillSelected: null
         }
     },
@@ -31,6 +29,11 @@ export default {
             this.pillSelected = pill;
             this.showFormPill = true;
         } 
+    },
+    mounted() {
+        EventBus.$on('delete-pill', (pill) => {
+            this.$delete(this.listPills, this.listPills.indexOf(pill));
+        });
     }
 }
 </script>

@@ -24,6 +24,7 @@
 
 <script>
 import axios from '@/utils/axios-instance'
+import EventBus from '@/utils/event-bus'
 
 export default {
     name: 'AddIssueForm',
@@ -37,7 +38,10 @@ export default {
     props: {roomId: Number},
     methods: {
         addIssue(event) {
-            axios.post("/issue/", {"roomId": this.roomId,  "title": this.title, "text": this.textPill, "authorId": 13});
+            axios.post("/issue/", {"roomId": this.roomId,  "title": this.title, "text": this.textPill, "authorId": 13})
+            .then(response => {
+                EventBus.$emit('add-issue', response.data);
+            });
             this.reset(event);
         },
         reset(event) {

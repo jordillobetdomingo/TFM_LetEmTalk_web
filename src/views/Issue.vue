@@ -23,8 +23,7 @@
             <button @click="updateIssue($event)">Save</button>
             <button @click="cancelUpdetaIssueTitle($event)">Cancel</button>
         </form>
-        <FormPill v-if="this.showFormAddPill" :pill="{'issueId': issueWithPills.issue.id, 'text': '', 'authorId': null}"></FormPill>
-
+        
         <AddPillForm v-if="issueWithPills.issue.allowCreatePills" :issueId="issueWithPills.issue.id"></AddPillForm>
         <ListPills :listPills="issueWithPills.pills"> </ListPills>
     </div>
@@ -33,11 +32,10 @@
 <script>
 import axios from '@/utils/axios-instance'
 import ListPills from '@/components/ListPills'
-import FormPill from '@/components/FormPill'
 import AddPillForm from '@/components/AddPillForm'
 import EditIcon from '@/components/icons/EditIcon'
 import DeleteIcon from '@/components/icons/DeleteIcon'
-
+import EventBus from '@/utils/event-bus'
 
 export default {
     name: 'Issue',
@@ -51,7 +49,6 @@ export default {
     },
     components: {
         ListPills,
-        FormPill,
         AddPillForm,
         EditIcon,
         DeleteIcon
@@ -91,6 +88,9 @@ export default {
     },
     mounted() {
         this.loadIssueWithPills();
+        EventBus.$on('add-pill', (pill) => {
+            this.issueWithPills.pills.push(pill);
+        });
     }
 }
 </script>

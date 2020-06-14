@@ -20,6 +20,7 @@
 
 <script>
 import axios from '@/utils/axios-instance'
+import EventBus from '@/utils/event-bus';
 
 export default {
     name: 'AddPillForm',
@@ -32,7 +33,10 @@ export default {
     props: {issueId: Number},
     methods: {
         addPill(event) {
-            axios.post("/pill/", {"issueId": this.issueId,  "text": this.text, "authorId": 13});
+            axios.post("/pill/", {"issueId": this.issueId,  "text": this.text, "authorId": 13})
+            .then(response => {
+                EventBus.$emit("add-pill", response.data);
+            });
             this.reset(event);
         },
         reset(event) {
