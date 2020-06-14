@@ -1,5 +1,5 @@
 import axios from 'axios'
-import router from '../router'
+import router from '@/router'
 
 const service = axios.create({
   baseURL: 'http://localhost:8000/api/',
@@ -12,7 +12,7 @@ service.interceptors.response.use((response) => {
   console.log(error);
   if (error.response.status === 401) {
       console.log('unauthorized, logging out ...');
-      router.replace('/login');
+      router.push('/login');
   } 
   //return Promise.reject(error.response);
 });

@@ -9,6 +9,7 @@
 
 <script>
 import axios from '@/utils/axios-instance'
+import EventBus from '@/utils/event-bus'
 
 export default {
     name: 'login',
@@ -22,6 +23,7 @@ export default {
         login() {
             axios.post('login', {'username': this.username, 'password': this.password})
             .then(() => {
+                EventBus.$emit('login');
                 this.$router.push('/');
             })
             .catch (function(error) {
