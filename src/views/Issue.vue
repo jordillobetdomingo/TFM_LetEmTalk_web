@@ -24,7 +24,7 @@
             <button @click="cancelUpdetaIssueTitle($event)">Cancel</button>
         </form>
         
-        <AddPillForm v-if="issueWithPills.issue.allowCreatePills" :issueId="issueWithPills.issue.id"></AddPillForm>
+        <AddPillForm v-if="issueWithPills.issue.allowCreatePills" :issueId="issueWithPills.issue.id" :user="this.user"></AddPillForm>
         <ListPills :listPills="issueWithPills.pills"> </ListPills>
     </div>
 </template>
@@ -39,6 +39,7 @@ import EventBus from '@/utils/event-bus'
 
 export default {
     name: 'Issue',
+    props: {'user': Object},
     data() {
         return {
             issueWithPills: {issue: {title: '', roomId: '0'}, pills: []},

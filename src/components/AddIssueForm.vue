@@ -35,10 +35,10 @@ export default {
             textPill: ''
         }
     },
-    props: {roomId: Number},
+    props: {user: Object, roomId: Number},
     methods: {
         addIssue(event) {
-            axios.post("/issue/", {"roomId": this.roomId,  "title": this.title, "text": this.textPill, "authorId": 13})
+            axios.post("/issue/", {"roomId": this.roomId,  "title": this.title, "text": this.textPill, "authorId": this.user.id })
             .then(response => {
                 EventBus.$emit('add-issue', response.data);
             });

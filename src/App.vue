@@ -11,7 +11,7 @@
         <li v-if="this.userIdentified">{{ this.user.firstName + ' ' + this.user.lastName }}</li>
       </ul>
     </nav>
-    <router-view/>
+    <router-view :user="this.user" />
   </div>
 </template>
 

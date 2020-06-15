@@ -24,16 +24,16 @@ import EventBus from '@/utils/event-bus';
 
 export default {
     name: 'AddPillForm',
+    props: { user: Object, issueId: Number },
     data() {
         return {
             showPillForm: false,
             text: ''
         }
     },
-    props: {issueId: Number},
     methods: {
         addPill(event) {
-            axios.post("/pill/", {"issueId": this.issueId,  "text": this.text, "authorId": 13})
+            axios.post("/pill/", {"issueId": this.issueId,  "text": this.text, "authorId": this.user.id})
             .then(response => {
                 EventBus.$emit("add-pill", response.data);
             });

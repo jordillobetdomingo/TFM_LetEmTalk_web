@@ -11,7 +11,7 @@
                 <h1> Room from: {{ roomWithIssues.room.firstName + ' ' + roomWithIssues.room.lastName }}</h1>
             </div>
         </div>
-        <AddIssueForm v-if="roomWithIssues.room.allowCreateIssues" :roomId="roomWithIssues.room.id"></AddIssueForm>
+        <AddIssueForm v-if="roomWithIssues.room.allowCreateIssues" :roomId="roomWithIssues.room.id" :user="this.user"></AddIssueForm>
         <ListIssues :listIssues="roomWithIssues.issues"></ListIssues>
     </div>
 </template>
@@ -24,6 +24,7 @@ import EventBus from '@/utils/event-bus'
 
 export default {
     name: 'room',
+    props: {user: Object},
     data() {
         return {
             roomWithIssues: {room: {firstName: '', lastName: ''}}
