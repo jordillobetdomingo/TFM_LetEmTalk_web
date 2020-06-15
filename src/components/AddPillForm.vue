@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="row justify-content-end">
+    <div class="form-add">
+        <div class="row justify-content-end no-margin">
             <button class="col-2 btn btn-outline-secondary" @click="showPillForm = !showPillForm">
                 Add comment
             </button>
@@ -11,8 +11,8 @@
                     <label for="text">Comment</label>
                     <textarea name="text" class="form-control" v-model="text"/>
                 </div>
-                <button @click="addPill($event)">Save</button>
-                <button @click="reset($event)">Cancel</button>
+                <button class="col-2 btn btn-outline-secondary btn-margin" @click="addPill($event)">Save</button>
+                <button class="col-2 btn btn-outline-secondary btn-margin" @click="reset($event)">Cancel</button>
             </form>
         </div>
     </div>

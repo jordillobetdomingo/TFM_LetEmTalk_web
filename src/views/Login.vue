@@ -1,9 +1,21 @@
 <template>
-    <div id="login">
-        <h1>Login</h1>
-        <input type="text" name="username" v-model="username" placeholder="Username" />
-        <input type="password" name="password" v-model="password" placeholder="Password" />
-        <button type="button" v-on:click="login()" >Login</button>
+    <div id="login" class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card card-signin my-5">
+                <div class="card-body">
+                    <h5 class="card-title text-center">Login</h5>
+                    <form>
+                        <div class="form-label-group">
+                            <input type="text" id="inputUsername" class="form-control" v-model="username" placeholder="Username" required autofocus>
+                        </div>
+                        <div class="form-label-group">
+                            <input type="password" id="inputPassword" class="form-control" v-model="password" placeholder="Password" required>
+                        </div>
+                        <button class="btn btn-lg btn-primary btn-block" v-on:click="login($event)">Login</button>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -20,7 +32,8 @@ export default {
         }
     },
     methods: {
-        login() {
+        login(event) {
+            event.preventDefault();
             axios.post('login', {'username': this.username, 'password': this.password})
             .then(() => {
                 EventBus.$emit('login');
@@ -34,3 +47,11 @@ export default {
     }
 }
 </script>
+
+<style>
+
+.form-label-group {
+    margin-top:2rem;
+    margin-bottom: 2rem;
+}
+</style>

@@ -2,9 +2,16 @@
     <div>
         <div v-if="!showPillForm">
             <p > {{pill.text}} </p>
-            <h6 class="card-subtitle mb-1 text-muted"> Author: {{ pill.firstNameAuthor + ' ' + pill.lastNameAuthor }}</h6>
-            <input type="button" class="btn btn-outline-secondary" v-if="pill.allowUpdate" value="EditPill" @click="showPillForm = true">
-            <input type="button" class="btn btn-outline-secondary" v-if="pill.allowDelete" value="DeletePill" @click="deletePill()">
+            <div class="row">
+                <div class="card-subtitle mb-1 text-muted col-8"> Author: {{ pill.firstNameAuthor + ' ' + pill.lastNameAuthor }}</div>
+                <div class="card-subtitle mb-1 text-muted col-4 text-right">
+                    <timeago :datetime="pill.createAt.date"></timeago>
+                </div>
+            
+            
+                <input type="button" class="btn btn-outline-secondary col-2" v-if="pill.allowUpdate" value="EditPill" @click="showPillForm = true">
+                <input type="button" class="btn btn-outline-secondary col-2" v-if="pill.allowDelete" value="DeletePill" @click="deletePill()">
+            </div>
         </div>
         <div v-if="showPillForm">
             <form>

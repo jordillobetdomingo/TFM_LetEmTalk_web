@@ -1,11 +1,11 @@
 <template>
   <div class="chat">
       <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
+            <ol class="breadcrumb path">
                 <li class="breadcrum-item"> Home </li>
             </ol>
         </nav>
-      <h1>LetEmTalk</h1>
+      <h1>Home</h1>
       <ListRooms :listRooms="listRooms"></ListRooms>
   </div>
 </template>

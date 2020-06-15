@@ -1,14 +1,23 @@
 <template>
   <div id="app" class="container-lg">
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <ul class="navbar-nav mr-auto">
-        <li v-if="this.userIdentified" class="nav-item active">
-          <router-link to="/logout">Logout</router-link>
+      <ul class="nav navbar-nav ">
+        <li class="nav-item active">
+          <router-link class="nav-link item-header" to="/">LetEmTalk</router-link>
         </li>
+      </ul>
+      <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
         <li v-if="!this.userIdentified" class="nav-item active">
-          <router-link to="/login">Login</router-link>
+          <router-link class="nav-link" to="/login">Login</router-link>
         </li>
-        <li v-if="this.userIdentified">{{ this.user.firstName + ' ' + this.user.lastName }}</li>
+        <li v-if="this.userIdentified" class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{ this.user.firstName + ' ' + this.user.lastName }}
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <router-link class="dropdown-item" to="/logout">Logout</router-link>
+          </div>
+        </li>
       </ul>
     </nav>
     <router-view :user="this.user" />
@@ -56,6 +65,31 @@ export default {
 
 h1 {
   text-align: center;
+  padding-bottom: 1.5rem;
+}
+
+.item-header {
+  font-size: 1.5em;
+  font-weight:bold;
+}
+
+ol.path {
+  margin-top: 1rem;
+  background-color:white;
+}
+
+.row.no-margin {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.form-add {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.form-add.btn-margin {
+    margin-right: 10px;
 }
 
 </style>
