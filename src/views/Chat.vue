@@ -6,7 +6,8 @@
             </ol>
         </nav>
       <h1>Home</h1>
-      <ListRooms :listRooms="listRooms"></ListRooms>
+      <ListRooms v-if="listRooms.length > 0" :listRooms="listRooms"></ListRooms>
+      <p> You don't have access at any Room</p>
   </div>
 </template>
 
@@ -29,6 +30,9 @@ export default {
             axios.get('rooms/')
                 .then(response => {
                     this.listRooms = response.data;
+                    if (this.listRooms.length == 1) {
+                        this.$toute.push('/room/' + this.listRooms[0].room.roomId + "/");
+                    }
                     console.log(response)
                 })
                 .catch(function(error) {

@@ -9,8 +9,8 @@
                 </div>
             
             
-                <input type="button" class="btn btn-outline-secondary col-2" v-if="pill.allowUpdate" value="EditPill" @click="showPillForm = true">
-                <input type="button" class="btn btn-outline-secondary col-2" v-if="pill.allowDelete" value="DeletePill" @click="deletePill()">
+                <input type="button" class="btn-border btn-sm" v-if="pill.allowUpdate" value="Edit" @click="showPillForm = true">
+                <input type="button" class="btn-border btn-sm" v-if="pill.allowDelete" value="Delete" @click="deletePill()">
             </div>
         </div>
         <div v-if="showPillForm">

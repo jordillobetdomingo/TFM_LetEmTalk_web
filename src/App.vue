@@ -7,6 +7,9 @@
         </li>
       </ul>
       <ul class="nav navbar-nav ml-auto w-100 justify-content-end">
+        <li v-if="this.userIdentified && this.user.isAdmin" class="nav-item active">
+          <router-link class="nav-link" to="/users/">Users</router-link>
+        </li>
         <li v-if="!this.userIdentified" class="nav-item active">
           <router-link class="nav-link" to="/login">Login</router-link>
         </li>
@@ -83,13 +86,27 @@ ol.path {
   margin-right: 0;
 }
 
-.form-add {
-    padding-top: 10px;
-    padding-bottom: 10px;
-}
-
 .form-add.btn-margin {
     margin-right: 10px;
+}
+
+.form-add-elem-enter, .form-add-elem-leave-to  {
+  transform: translateY(100%);
+  opacity: 0;
+}
+
+.form-add-elem-enter-active {
+  transition: all .3s ease;
+}
+
+.form-add-elem-leave-active {
+  transition: all .5s ease;
+}
+
+.btn-border {
+  border: rgb(180,180,180) solid 1px;
+  margin-left: 8px;
+  margin-right: 8px;
 }
 
 </style>

@@ -14,7 +14,7 @@ service.interceptors.response.use((response) => {
       console.log('unauthorized, logging out ...');
       router.push('/login');
   } 
-  //return Promise.reject(error.response);
+  return Promise.reject(error.response);
 });
 
 export default service

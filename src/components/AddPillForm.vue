@@ -5,16 +5,18 @@
                 Add comment
             </button>
         </div>
-        <div v-if="showPillForm">
-            <form>
-                <div class="form-group">
-                    <label for="text">Comment</label>
-                    <textarea name="text" class="form-control" v-model="text"/>
-                </div>
-                <button class="col-2 btn btn-outline-secondary btn-margin" @click="addPill($event)">Save</button>
-                <button class="col-2 btn btn-outline-secondary btn-margin" @click="reset($event)">Cancel</button>
-            </form>
-        </div>
+        <transition name="form-add-elem">
+            <div v-if="showPillForm">
+                <form>
+                    <div class="form-group">
+                        <label for="text">Comment</label>
+                        <textarea name="text" class="form-control" v-model="text"/>
+                    </div>
+                    <button class="btn-border btn-sm" @click="addPill($event)">Save</button>
+                    <button class="btn-border btn-sm" @click="reset($event)">Cancel</button>
+                </form>
+            </div>
+        </transition>
     </div>
 </template>
 

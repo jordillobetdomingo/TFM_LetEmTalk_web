@@ -5,20 +5,22 @@
                 Add issue
             </button>
         </div>
-        <div v-if="showIssueForm">
-            <form>
-                <div class="form-group">
-                    <label for="title">Title</label>
-                    <input type="text" name="title" v-model="title" class="form-control"/>
-                </div>
-                <div class="form-group">
-                    <label for="text">Comment</label>
-                    <textarea name="text" class="form-control" v-model="textPill"/>
-                </div>
-                <button class="col-2 btn btn-outline-secondary btn-margin" @click="addIssue($event)">Save</button>
-                <button class="col-2 btn btn-outline-secondary btn-margin" @click="reset($event)">Cancel</button>
-            </form>
-        </div>
+        <transition name="form-add-elem">
+            <div v-if="showIssueForm">
+                <form>
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" name="title" v-model="title" class="form-control"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="text">Comment</label>
+                        <textarea name="text" class="form-control" v-model="textPill"/>
+                    </div>
+                    <button class="btn-border btn-sm" @click="addIssue($event)">Save</button>
+                    <button class="btn-border btn-sm" @click="reset($event)">Cancel</button>
+                </form>
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -32,7 +34,8 @@ export default {
         return {
             showIssueForm: false,
             title: '',
-            textPill: ''
+            textPill: '',
+            modalShow: false
         }
     },
     props: {user: Object, roomId: Number},

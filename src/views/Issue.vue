@@ -9,19 +9,17 @@
         </nav>
         <div class="row title_box" v-show="!showEditIssueForm">
             <h1 class="col-10">{{issueWithPills.issue.title}}</h1>
-            <button class='button_issue col-1' v-if="issueWithPills.issue.allowUpdate" @click="showEditForm()">
-                <EditIcon></EditIcon>
-            </button>
-            <button class='button_issue col-1' v-if="issueWithPills.issue.allowDelete" @click="deleteIssue()">
-                <DeleteIcon></DeleteIcon>
-            </button>
+            <div class="col-2">
+                <button class='btn-border btn-sm btn-block' v-if="issueWithPills.issue.allowUpdate" @click="showEditForm()">Edit</button>
+                <button class='btn-border btn-sm btn-block' v-if="issueWithPills.issue.allowDelete" @click="deleteIssue()">Delete</button>
+            </div>
         </div>
         <form v-show="showEditIssueForm">
             <div class="form-group">
                 <input class="form-control" type="text" v-model='newIssueTitle'>
             </div>
-            <button @click="updateIssue($event)">Save</button>
-            <button @click="cancelUpdetaIssueTitle($event)">Cancel</button>
+            <button class="btn-border btn-sm" @click="updateIssue($event)">Save</button>
+            <button class="btn-border btn-sm" @click="cancelUpdetaIssueTitle($event)">Cancel</button>
         </form>
         
         <AddPillForm v-if="issueWithPills.issue.allowCreatePills" :issueId="issueWithPills.issue.id" :user="this.user"></AddPillForm>
@@ -33,8 +31,6 @@
 import axios from '@/utils/axios-instance'
 import ListPills from '@/components/ListPills'
 import AddPillForm from '@/components/AddPillForm'
-import EditIcon from '@/components/icons/EditIcon'
-import DeleteIcon from '@/components/icons/DeleteIcon'
 import EventBus from '@/utils/event-bus'
 
 export default {
@@ -51,8 +47,8 @@ export default {
     components: {
         ListPills,
         AddPillForm,
-        EditIcon,
-        DeleteIcon
+//        EditIcon,
+//        DeleteIcon
     },
     methods: {
         loadIssueWithPills() {
