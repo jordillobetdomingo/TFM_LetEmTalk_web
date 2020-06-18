@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import axios from '@/utils/axios-instance'
 import EventBus from '@/utils/event-bus'
 
 export default {
@@ -41,8 +40,9 @@ export default {
     props: {user: Object, roomId: Number},
     methods: {
         addIssue(event) {
-            axios.post("/issue/", {"roomId": this.roomId,  "title": this.title, "text": this.textPill, "authorId": this.user.id })
+            this.axios.post("/issue/", {"roomId": this.roomId,  "title": this.title, "text": this.textPill, "authorId": this.user.id })
             .then(response => {
+                console.log(response.data);
                 EventBus.$emit('add-issue', response.data);
             });
             this.reset(event);

@@ -9,8 +9,8 @@
 </template>
 
 <script>
-import PillItem from '@/components/PillItem'
-import EventBus from '@/utils/event-bus';
+import EventBus from '@/utils/event-bus'
+import PillItem from '@/components/Pill/PillItem'
 
 export default {
     name: 'listPills',

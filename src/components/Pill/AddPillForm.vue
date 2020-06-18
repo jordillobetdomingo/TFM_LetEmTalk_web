@@ -21,8 +21,7 @@
 </template>
 
 <script>
-import axios from '@/utils/axios-instance'
-import EventBus from '@/utils/event-bus';
+import EventBus from '@/utils/event-bus'
 
 export default {
     name: 'AddPillForm',
@@ -35,7 +34,7 @@ export default {
     },
     methods: {
         addPill(event) {
-            axios.post("/pill/", {"issueId": this.issueId,  "text": this.text, "authorId": this.user.id})
+            this.axios.post("/pill/", {"issueId": this.issueId,  "text": this.text, "authorId": this.user.id})
             .then(response => {
                 EventBus.$emit("add-pill", response.data);
             });

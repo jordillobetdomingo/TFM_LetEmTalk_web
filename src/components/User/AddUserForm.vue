@@ -1,12 +1,7 @@
 <template>
     <div id="AddUserForm">
-        <div class="row justify-content-end no-margin">
-            <button class="col-2 btn btn-outline-secondary" @click="showUserForm = !showUserForm">
-                Add User
-            </button>
-        </div>
         <transition name="form-add-elem">
-            <div v-if="showUserForm">
+            <div>
                 <form>
                     <div class="form-group" v-if="this.listErrors.length > 0">
                         <b>Please correct the following error(s):</b>
@@ -47,7 +42,6 @@
 </template>
 
 <script>
-import axios from '@/utils/axios-instance'
 import EventBus from '@/utils/event-bus'
 
 export default {
@@ -74,7 +68,7 @@ export default {
             event.preventDefault();
             this.checkPassword();
             if (this.listErrors.length === 0) {
-                axios.post("/user/", {"firstName": this.firstName, "lastName": this.lastName, "email": this.email, "username": this.username, "password": this.password })
+                this.axios.post("/user/", {"firstName": this.firstName, "lastName": this.lastName, "email": this.email, "username": this.username, "password": this.password })
                 .then(response => {
                     EventBus.$emit('add-user', response.data);    
                 });
@@ -87,8 +81,9 @@ export default {
             this.email = '';
             this.username = '';
             this.password = '';
-            this.showUserForm = false;
+            this.password2 = '';
             event.preventDefault();
+            EventBus.$emit('hidde-form-user');
         },
         checkPassword() {
             this.listErrors = [];

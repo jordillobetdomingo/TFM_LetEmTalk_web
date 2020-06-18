@@ -17,10 +17,9 @@
 </template>
 
 <script>
-import axios from '@/utils/axios-instance'
-import ListIssues from '@/components/ListIssues'
-import AddIssueForm from '@/components/AddIssueForm'
 import EventBus from '@/utils/event-bus'
+import ListIssues from '@/components/Issue/ListIssues'
+import AddIssueForm from '@/components/Issue/AddIssueForm'
 
 export default {
     name: 'room',
@@ -36,7 +35,7 @@ export default {
     },
     methods: {
         loadRoomWithIssue() {
-        axios.get('/room/' + this.$route.params.roomId + '/')
+        this.axios.get('/room/' + this.$route.params.roomId + '/')
             .then(response => {
                 this.roomWithIssues = response.data;
             })
@@ -55,6 +54,5 @@ export default {
 </script>
 
 <style>
-
 
 </style>

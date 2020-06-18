@@ -28,10 +28,9 @@
 </template>
 
 <script>
-import axios from '@/utils/axios-instance'
-import ListPills from '@/components/ListPills'
-import AddPillForm from '@/components/AddPillForm'
 import EventBus from '@/utils/event-bus'
+import ListPills from '@/components/Pill/ListPills'
+import AddPillForm from '@/components/Pill/AddPillForm'
 
 export default {
     name: 'Issue',
@@ -47,12 +46,10 @@ export default {
     components: {
         ListPills,
         AddPillForm,
-//        EditIcon,
-//        DeleteIcon
     },
     methods: {
         loadIssueWithPills() {
-            axios.get('issue/' + this.$route.params.issueId + '/')
+            this.axios.get('issue/' + this.$route.params.issueId + '/')
                 .then(response => {
                     this.issueWithPills = response.data
                 });            
@@ -66,7 +63,7 @@ export default {
         },
         deleteIssue() {
             if (confirm("Are you sure do you want to delete " + this.issueWithPills.issue.title + "?")) {
-                axios.delete("/issue/" + this.issueWithPills.issue.id + "/")
+                this.axios.delete("/issue/" + this.issueWithPills.issue.id + "/")
                 .then(() => {
                     this.$router.push('/room/' + this.issueWithPills.issue.roomId + '/');
                 });
@@ -80,7 +77,7 @@ export default {
             this.showEditIssueForm = false;
             this.issueWithPills.issue.title = this.newIssueTitle; 
             event.preventDefault();
-            axios.put('/issue/' + this.issueWithPills.issue.id + "/", {'title': this.issueWithPills.issue.title});
+            this.axios.put('/issue/' + this.issueWithPills.issue.id + "/", {'title': this.issueWithPills.issue.title});
         }
     },
     mounted() {

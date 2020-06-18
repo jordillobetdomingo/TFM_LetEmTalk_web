@@ -5,21 +5,27 @@
                 <h1> Users </h1>
             </div>
         </div>
-        <AddUserForm v-if="user.isAdmin" :user="this.user"></AddUserForm>
-        <ListUsers :listUsers="this.listUsers"></ListUsers>
+        <div class="row justify-content-end no-margin">
+            <button class="col-2 btn btn-outline-secondary" @click="showUserForm = !showUserForm">
+                Add User
+            </button>
+        </div>
+        <AddUserForm v-if="showUserForm" :user="this.user"></AddUserForm>
+        <ListUsers v-if="!showUserForm" :listUsers="this.listUsers"></ListUsers>
     </div>
 </template>
 
 <script>
-import axios from '@/utils/axios-instance'
-import AddUserForm from '@/components/Users/AddUserForm'
-import ListUsers from '@/components/Users/ListUsers'
+import EventBus from '@/utils/event-bus'
+import AddUserForm from '@/components/User/AddUserForm'
+import ListUsers from '@/components/User/ListUsers'
 
 export default {
     name: "Users",
     props: { 'user': Object },
     data () {
         return {
+            showUserForm: false,
             listUsers: []
         }
     },
@@ -29,7 +35,7 @@ export default {
     },
     methods: {
         loadUsers() {
-            axios.get('/users/')
+            this.axios.get('/users/')
             .then(response => {
                 this.listUsers = response.data
             });
@@ -37,6 +43,12 @@ export default {
     },
     mounted() {
         this.loadUsers();
+        EventBus.$on('add-user', user => {
+            this.listUsers.push(user);
+        });
+        EventBus.$on('hidde-form-user', () => {
+            this.showUserForm = false;
+        });
     }
 }
 </script>

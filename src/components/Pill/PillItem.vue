@@ -7,8 +7,7 @@
                 <div class="card-subtitle mb-1 text-muted col-4 text-right">
                     <timeago :datetime="pill.createAt.date"></timeago>
                 </div>
-            
-            
+                            
                 <input type="button" class="btn-border btn-sm" v-if="pill.allowUpdate" value="Edit" @click="showPillForm = true">
                 <input type="button" class="btn-border btn-sm" v-if="pill.allowDelete" value="Delete" @click="deletePill()">
             </div>
@@ -27,8 +26,7 @@
 </template>
 
 <script>
-import axios from '@/utils/axios-instance'
-import EventBus from '@/utils/event-bus';
+import EventBus from '@/utils/event-bus'
 
 export default {
     name: 'PillItem',
@@ -41,7 +39,7 @@ export default {
     },
     methods: {
         editPill(event) {
-            axios.put("/pill/" + this.pill.id + '/', {"text": this.textEdit });
+            this.axios.put("/pill/" + this.pill.id + '/', {"text": this.textEdit });
             this.pill.text = this.textEdit;
             this.reset(event);
         },
@@ -52,7 +50,7 @@ export default {
         },
         deletePill() {
             if (confirm("Do you want to remove this comment?")) {
-                axios.delete("/pill/" + this.pill.id + "/");
+                this.axios.delete("/pill/" + this.pill.id + "/");
                 EventBus.$emit('delete-pill', this.pill);
             }
         }

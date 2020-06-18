@@ -4,14 +4,13 @@
 </template>
 
 <script>
-import axios from '@/utils/axios-instance'
 import EventBus from '@/utils/event-bus'
 
 export default {
     name: 'logout',
     methods: {
         logout() {
-            axios.post('/logout')
+            this.axios.post('/logout')
             .then(() => {
                 this.$router.push('/login');
                 EventBus.$emit('logout');
