@@ -5,10 +5,13 @@
                 <h1> Users </h1>
             </div>
         </div>
-        <div class="row justify-content-end no-margin">
-            <button class="col-2 btn btn-outline-secondary" @click="showUserForm = !showUserForm">
-                Add User
-            </button>
+        <div class="row">
+            <div class="col-11"></div>
+            <div class="col-1 justify-content-end">
+                <div class="btn-group-sm btn-group-form" role="group">
+                    <button class="btn btn-success" @click="showUserForm = !showUserForm"><i class="fa fa-plus-circle fa-lg" style="font-size:24px"></i></button>
+                </div>
+            </div>
         </div>
         <AddUserForm v-if="showUserForm" :user="this.user"></AddUserForm>
         <ListUsers v-if="!showUserForm" :listUsers="this.listUsers"></ListUsers>

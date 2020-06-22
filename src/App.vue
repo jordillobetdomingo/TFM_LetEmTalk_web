@@ -109,4 +109,20 @@ ol.path {
   margin-right: 8px;
 }
 
+.margin-item {
+  margin-top:10px;
+  margin-bottom:10px;
+}
+
+.btn-group-form button {
+  margin: 5px;
+}
+
+.btn.btn-form {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
 </style>

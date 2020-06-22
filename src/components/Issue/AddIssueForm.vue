@@ -1,9 +1,12 @@
 <template>
     <div class="form-add">
-        <div class="row justify-content-end no-margin">
-            <button class="col-2 btn btn-outline-secondary" @click="showIssueForm = !showIssueForm">
-                Add issue
-            </button>
+        <div class="row">
+            <div class="col-11"></div>
+            <div class="col-1 justify-content-end">
+                <div class="btn-group-sm btn-group-form" role="group">
+                    <button class="btn btn-success" @click="showIssueForm = !showIssueForm"><i class="fa fa-plus-circle fa-lg" style="font-size:24px"></i></button>
+                </div>
+            </div>
         </div>
         <transition name="form-add-elem">
             <div v-if="showIssueForm">

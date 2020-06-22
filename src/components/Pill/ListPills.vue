@@ -1,6 +1,6 @@
 <template>
     <div id="listPills">
-        <div class="card" v-for="pill in listPills" :key="pill.id">
+        <div class="card margin-item" v-for="pill in listPills" :key="pill.id">
             <div class="card-body">
                 <PillItem :pill="pill"></PillItem>
             </div>

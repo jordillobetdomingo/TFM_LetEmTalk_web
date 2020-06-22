@@ -30,7 +30,7 @@ export default {
                 .then(response => {
                     this.listRooms = response.data;
                     if (this.listRooms.length == 1) {
-                        this.$route.push('/room/' + this.listRooms[0].room.roomId + "/");
+                        this.$router.push('/room/' + this.listRooms[0].roomId + "/");
                     }
                     console.log(response)
                 })

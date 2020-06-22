@@ -8,18 +8,24 @@
             </ol>
         </nav>
         <div class="row title_box" v-show="!showEditIssueForm">
-            <h1 class="col-10">{{issueWithPills.issue.title}}</h1>
-            <div class="col-2">
-                <button class='btn-border btn-sm btn-block' v-if="issueWithPills.issue.allowUpdate" @click="showEditForm()">Edit</button>
-                <button class='btn-border btn-sm btn-block' v-if="issueWithPills.issue.allowDelete" @click="deleteIssue()">Delete</button>
+            <div class="col-11">
+                <h1>{{issueWithPills.issue.title}}</h1>
+            </div>
+            <div class="col-1">
+                <div class="btn-group-sm btn-group-form" role="group">
+                    <button class="btn btn-warning" v-if="issueWithPills.issue.allowUpdate" @click="showEditForm()"><i class="fa fa-pencil fa-lg" style="font-size:24px"></i></button>
+                    <button class="btn btn-danger" v-if="issueWithPills.issue.allowDelete" @click="deleteIssue()"><i class="fa fa-trash-o fa-lg" style="font-size:24px"></i></button>
+                </div>
             </div>
         </div>
         <form v-show="showEditIssueForm">
             <div class="form-group">
                 <input class="form-control" type="text" v-model='newIssueTitle'>
             </div>
-            <button class="btn-border btn-sm" @click="updateIssue($event)">Save</button>
-            <button class="btn-border btn-sm" @click="cancelUpdetaIssueTitle($event)">Cancel</button>
+            <div class="btn-group-sm btn-group-form">
+                <button @click="updateIssue($event)" class="btn btn-secondary">Save</button>
+                <button @click="cancelUpdetaIssueTitle($event)" class="btn btn-secondary">Cancel</button>
+            </div>
         </form>
         
         <AddPillForm v-if="issueWithPills.issue.allowCreatePills" :issueId="issueWithPills.issue.id" :user="this.user"></AddPillForm>
@@ -83,7 +89,7 @@ export default {
     mounted() {
         this.loadIssueWithPills();
         EventBus.$on('add-pill', (pill) => {
-            this.issueWithPills.pills.push(pill);
+            this.issueWithPills.pills.unshift(pill);
         });
     }
 }

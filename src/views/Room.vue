@@ -47,7 +47,7 @@ export default {
     mounted() {
         this.loadRoomWithIssue();
         EventBus.$on('add-issue', (issue) => {
-            this.roomWithIssues.issues.push(issue);
+            this.roomWithIssues.issues.unshift(issue);
         });
     }
 }
