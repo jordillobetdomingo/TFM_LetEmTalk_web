@@ -1,29 +1,33 @@
 <template>
-    <div class="form-add">
+    <div>
         <div class="row">
             <div class="col-11"></div>
             <div class="col-1 justify-content-end">
                 <div class="btn-group-sm btn-group-form" role="group">
-                    <button class="btn btn-success" @click="showIssueForm = !showIssueForm"><i class="fa fa-plus-circle fa-lg" style="font-size:24px"></i></button>
+                    <button class="btn btn-add" @click="showIssueForm = !showIssueForm"><i class="fa fa-plus" style="font-size:24px"></i></button>
                 </div>
             </div>
         </div>
-        <transition name="form-add-elem">
-            <div v-if="showIssueForm">
-                <form>
-                    <div class="form-group">
-                        <label for="title">Title</label>
-                        <input type="text" name="title" v-model="title" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <label for="text">Comment</label>
-                        <textarea name="text" class="form-control" v-model="textPill"/>
-                    </div>
-                    <button class="btn-border btn-sm" @click="addIssue($event)">Save</button>
-                    <button class="btn-border btn-sm" @click="reset($event)">Cancel</button>
-                </form>
-            </div>
-        </transition>
+        <div class="row">
+            <transition name="form-add-elem">
+                <div v-if="showIssueForm" class="col-12">
+                    <form>
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" name="title" v-model="title" class="form-control"/>
+                        </div>
+                        <div class="form-group">
+                            <label for="text">Comment</label>
+                            <textarea name="text" class="form-control" v-model="textPill"/>
+                        </div>
+                        <div class="btn-group-sm btn-group-form">
+                            <button class="btn btn-secondary" @click="addIssue($event)">Save</button>
+                            <button class="btn btn-secondary" @click="reset($event)">Cancel</button>
+                        </div>
+                    </form>
+                </div>
+            </transition>
+        </div>
     </div>
 </template>
 

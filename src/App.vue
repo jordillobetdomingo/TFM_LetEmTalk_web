@@ -28,20 +28,19 @@
 </template>
 
 <script>
-import axios from '@/utils/axios-instance'
 import EventBus from '@/utils/event-bus'
 
 export default {
   name: 'LetEmTalk',
   data() {
     return {
-      user: { 'id': 0, 'firstName': '', 'lastName': ''},
+      user: { 'id': 0, 'firstName': '', 'lastName': '', 'isAdmin': false},
       userIdentified: false
     }
   },
   methods: {
     loadUser() {
-      axios.get('/user/')
+      this.axios.get('/user/')
       .then(response => {
         this.user = response.data;
         this.userIdentified = true;
@@ -59,6 +58,7 @@ export default {
     EventBus.$on('logout', () => {
       this.user = {},
       this.userIdentified = false;
+      this.$router.push('/login');
     });
   }
 }
@@ -72,8 +72,27 @@ h1 {
 }
 
 .item-header {
-  font-size: 1.5em;
+  font-size: 1.5rem;
   font-weight:bold;
+}
+
+.breadcrumb-item {
+  padding-left: .5rem;
+  padding-right: .5rem;
+}
+
+.body-let {
+  padding: .5rem 1rem;
+}
+
+.form-control {
+  padding-right: .5rem;
+  padding-left: .5rem;
+}
+
+.row {
+  padding-left: 1 rem;
+  padding-right: 1 rem;
 }
 
 ol.path {
@@ -84,6 +103,15 @@ ol.path {
 .row.no-margin {
   margin-left: 0;
   margin-right: 0;
+}
+
+.title-box {
+    margin-bottom: 10px;
+    /*border-bottom: 1px solid rgba(0,0,0,.125);*/
+}
+
+.form-add {
+    padding: 20px;
 }
 
 .form-add.btn-margin {
@@ -103,19 +131,15 @@ ol.path {
   transition: all .5s ease;
 }
 
-.btn-border {
-  border: rgb(180,180,180) solid 1px;
-  margin-left: 8px;
-  margin-right: 8px;
-}
-
-.margin-item {
-  margin-top:10px;
-  margin-bottom:10px;
+.btn-group-form {
+  padding-top:.75rem;
 }
 
 .btn-group-form button {
-  margin: 5px;
+  margin-left: 0;
+  margin-right: 5px;
+  margin-top: 0;
+  margin-bottom: 5px;
 }
 
 .btn.btn-form {
@@ -124,5 +148,29 @@ ol.path {
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
 }
+
+.btn.btn-edit {
+  color: #fff;
+  background-color:#f0ad4e;
+  border-color:#eea236;
+}
+
+.btn.btn-delete {
+  color: #fff;
+  background-color:#ac2925;
+  border-color:#761c19;
+}
+
+.btn.btn-add {
+  color: #fff;
+  background-color:#28a745;
+  border-color:#28a745;
+}
+
+.card {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
 
 </style>

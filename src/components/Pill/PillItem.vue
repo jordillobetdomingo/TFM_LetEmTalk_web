@@ -7,16 +7,16 @@
                     <timeago :datetime="pill.createAt"></timeago>
                 </div>
             </div>
+        
             <div class="row">
-                <div class="card-body">
+                <div class="col-12">
                     {{pill.text}}
                 </div>
             </div>
-            <div  class="row">
-                <div class="btn-group-sm btn-group-form" role="group">
-                    <button class="btn btn-warning" v-if="pill.allowUpdate" @click="showPillForm = true"><i class="fa fa-pencil fa-lg" style="font-size:24px"></i></button>
-                    <button class="btn btn-danger" v-if="pill.allowDelete" @click="deletePill()"><i class="fa fa-trash-o fa-lg" style="font-size:24px"></i></button>
-                </div>
+        
+            <div class="btn-group-sm btn-group-form" role="group">
+                <button class="btn btn-edit" v-if="pill.allowUpdate" @click="showPillForm = true"><i class="fa fa-pencil fa-lg" style="font-size:24px"></i></button>
+                <button class="btn btn-delete" v-if="pill.allowDelete" @click="deletePill()"><i class="fa fa-trash-o fa-lg" style="font-size:24px"></i></button>
             </div>
         </div>
         <div v-if="showPillForm">

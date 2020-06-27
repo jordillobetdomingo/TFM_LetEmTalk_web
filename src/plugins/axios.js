@@ -2,7 +2,9 @@
 
 import Vue from 'vue';
 import axios from "axios";
-import router from '../router'
+//import router from '../router'
+import EventBus from '@/utils/event-bus'
+
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
@@ -40,7 +42,8 @@ _axios.interceptors.response.use(
     console.log(error);
     if (error.response.status === 401) {
         console.log('unauthorized, logging out ...');
-        router.push('/login');
+        EventBus.$emit('logout');
+        //router.push('/login');
     } 
     return Promise.reject(error);
   }

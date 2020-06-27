@@ -1,8 +1,10 @@
 <template>
-    <div id="listPills">
-        <div class="card margin-item" v-for="pill in listPills" :key="pill.id">
-            <div class="card-body">
-                <PillItem :pill="pill"></PillItem>
+    <div id="listPills" class="row">
+        <div class="col-12">
+            <div class="card" v-for="pill in listPills" :key="pill.id">
+                <div class="card-body">
+                    <PillItem :pill="pill"></PillItem>
+                </div>
             </div>
         </div>
     </div>
@@ -37,3 +39,6 @@ export default {
     }
 }
 </script>
+
+<style>
+</style>

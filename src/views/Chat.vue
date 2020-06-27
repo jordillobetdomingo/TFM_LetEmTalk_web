@@ -1,14 +1,18 @@
 <template>
   <div class="chat">
-      <nav aria-label="breadcrumb">
+        <nav aria-label="breadcrumb">
             <ol class="breadcrumb path">
                 <li class="breadcrum-item"> Home </li>
             </ol>
         </nav>
-      <h1>Home</h1>
-      <ListRooms v-if="listRooms.length > 0" :listRooms="listRooms"></ListRooms>
-      <p v-if="listRooms.length == 0"> You don't have access at any Room</p>
-  </div>
+        <div class="body-let">    
+            <div>
+                <h1>Home</h1>
+            </div>
+            <ListRooms v-if="listRooms.length > 0" :listRooms="listRooms"></ListRooms>
+            <p v-if="listRooms.length == 0"> You don't have access at any Room</p>
+        </div>
+    </div>
 </template>
 
 <script>
@@ -16,6 +20,7 @@ import ListRooms from '@/components/Room/ListRooms'
 
 export default {
     name: "chat",
+    props: {user: Object},
     data() {
         return {
             listRooms: []
@@ -40,7 +45,11 @@ export default {
         }
     },
     mounted() {
-        this.loadRooms();
+        if (this.user.isAdmin) {
+            this.$router.push('/users/');
+        } else {
+            this.loadRooms();
+        }
     }
 }
 </script>

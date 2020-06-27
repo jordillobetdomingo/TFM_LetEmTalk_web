@@ -1,18 +1,26 @@
 <template>
     <div id="AssignRoleForm">
-        <form class="row">
-            <div class="form-group col-2">
-                <select v-model="roleSelected">
-                    <option v-for="role in roles" :key="role.id" :value="role"> {{ role.name }} </option>
-                </select>
+        <div v-if="!showPermissionForm">
+            <div class="form-group">
+                <button class="btn btn-secondary" @click="showPermissionForm = !showPermissionForm"> Add Permissions </button>
             </div>
-            <div class="form-group col-2">
-                <select v-model="roomSelected" v-if="!this.roleSelected.createRoom">
-                    <option v-for="room in rooms" :key="room.roomId" :value="room"> {{ room.firstName + ' ' + room.lastName }} </option>
-                </select>
-            </div>
-            <div class="form-group col-2">
-                <button class="btn-border btn-sm" @click="assignRole($event)"> Assign </button>
+        </div>
+        <form v-if="showPermissionForm">
+            <div class="row justify-content-center">
+                <div class="form-group col-3">
+                    <select class="form-control" v-model="roleSelected">
+                        <option v-for="role in roles" :key="role.id" :value="role"> {{ role.name }} </option>
+                    </select>
+                </div>
+                <div class="form-group col-3">
+                    <select class="form-control" v-model="roomSelected" v-if="!this.roleSelected.createRoom">
+                        <option v-for="room in rooms" :key="room.roomId" :value="room"> {{ room.firstName + ' ' + room.lastName }} </option>
+                    </select>
+                </div>
+                <div class="btn-group-sm btn-group-form col-3">
+                    <button class="btn btn-secondary" @click="assignRole($event)"> Assign </button>
+                    <button class="btn btn-secondary" @click="reset($event)"> Cancel </button>
+                </div>
             </div>
         </form>
     </div>
@@ -25,7 +33,8 @@ export default {
     data() {
         return {
             roleSelected: this.roles[0],
-            roomSelected: this.rooms[0]
+            roomSelected: this.rooms[0],
+            showPermissionForm: false
         }
     },
     methods: {
@@ -42,7 +51,21 @@ export default {
                 });
             }
             event.preventDefault();
+        },
+        reset(event) {
+            this.roleSelected = this.roles[0];
+            this.roomSelected = this.rooms[0];
+            this.showPermissionForm = false;
+            event.preventDefault();
         }
     }
 }
 </script>
+
+<style>
+#AssignRoleForm {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+</style>

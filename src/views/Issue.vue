@@ -7,29 +7,33 @@
                 <li class="breadcrumb-item active" aria-current="page"> Issue </li>
             </ol>
         </nav>
-        <div class="row title_box" v-show="!showEditIssueForm">
-            <div class="col-11">
-                <h1>{{issueWithPills.issue.title}}</h1>
-            </div>
-            <div class="col-1">
-                <div class="btn-group-sm btn-group-form" role="group">
-                    <button class="btn btn-warning" v-if="issueWithPills.issue.allowUpdate" @click="showEditForm()"><i class="fa fa-pencil fa-lg" style="font-size:24px"></i></button>
-                    <button class="btn btn-danger" v-if="issueWithPills.issue.allowDelete" @click="deleteIssue()"><i class="fa fa-trash-o fa-lg" style="font-size:24px"></i></button>
+        <div class="body-let">
+            <div class="row title-box" v-show="!showEditIssueForm">
+                <div class="col-11">
+                    <h1>{{issueWithPills.issue.title}}</h1>
+                </div>
+                <div class="col-1">
+                    <div class="btn-group-sm btn-group-form" role="group">
+                        <button class="btn btn-edit" v-if="issueWithPills.issue.allowUpdate" @click="showEditForm()"><i class="fa fa-pencil" style="font-size:24px"></i></button>
+                        <button class="btn btn-delete" v-if="issueWithPills.issue.allowDelete" @click="deleteIssue()"><i class="fa fa-trash-o" style="font-size:24px"></i></button>
+                    </div>
                 </div>
             </div>
+            <div class="row">
+                <form v-show="showEditIssueForm" class="col-12">
+                    <div class="form-group">
+                        <input class="form-control" type="text" v-model='newIssueTitle'>
+                    </div>
+                    <div class="btn-group-sm btn-group-form">
+                        <button @click="updateIssue($event)" class="btn btn-secondary">Save</button>
+                        <button @click="cancelUpdetaIssueTitle($event)" class="btn btn-secondary">Cancel</button>
+                    </div>
+                </form>
+            </div>
+            
+            <AddPillForm v-if="issueWithPills.issue.allowCreatePills" :issueId="issueWithPills.issue.id" :user="this.user"></AddPillForm>
+            <ListPills :listPills="issueWithPills.pills"> </ListPills>
         </div>
-        <form v-show="showEditIssueForm">
-            <div class="form-group">
-                <input class="form-control" type="text" v-model='newIssueTitle'>
-            </div>
-            <div class="btn-group-sm btn-group-form">
-                <button @click="updateIssue($event)" class="btn btn-secondary">Save</button>
-                <button @click="cancelUpdetaIssueTitle($event)" class="btn btn-secondary">Cancel</button>
-            </div>
-        </form>
-        
-        <AddPillForm v-if="issueWithPills.issue.allowCreatePills" :issueId="issueWithPills.issue.id" :user="this.user"></AddPillForm>
-        <ListPills :listPills="issueWithPills.pills"> </ListPills>
     </div>
 </template>
 
@@ -97,9 +101,6 @@ export default {
 
 <style scoped>
 
-h1 {
-    display:inline;
-}
 
 .button_issue {
     width:48px;
@@ -107,8 +108,5 @@ h1 {
     background-color:white;
 }
 
-.title_box {
-    margin-right: 0;
-    margin-left: 0;
-}
+
 </style>

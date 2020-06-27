@@ -33,8 +33,10 @@
                         <label for="password2">Repeat password</label>
                         <input type="password" name="password2" v-model="password2" class="form-control" maxlength="32" required/>
                     </div>
-                    <button class="btn-border btn-sm" @click="addUser($event)">Save</button>
-                    <button class="btn-border btn-sm" @click="reset($event)">Cancel</button>
+                    <div class="btn-group-sm btn-group-form">
+                        <button class="btn btn-secondary" @click="addUser($event)">Save</button>
+                        <button class="btn btn-secondary" @click="reset($event)">Cancel</button>
+                    </div>
                 </form>
             </div>
         </transition>

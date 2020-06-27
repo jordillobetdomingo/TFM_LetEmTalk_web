@@ -6,13 +6,15 @@
                 <li class="breadcrumb-item active" aria-current="page"> Room </li>
             </ol>
         </nav>
-        <div class="row">
-            <div class="col-12">
-                <h1> Room: {{ roomWithIssues.room.firstName + ' ' + roomWithIssues.room.lastName }}</h1>
+        <div class="body-let">
+            <div class="row">
+                <div class="col-12">
+                    <h1> Room: {{ roomWithIssues.room.firstName + ' ' + roomWithIssues.room.lastName }}</h1>
+                </div>
             </div>
+            <AddIssueForm v-if="roomWithIssues.room.allowCreateIssues" :roomId="roomWithIssues.room.id" :user="this.user"></AddIssueForm>
+            <ListIssues :listIssues="roomWithIssues.issues"></ListIssues>
         </div>
-        <AddIssueForm v-if="roomWithIssues.room.allowCreateIssues" :roomId="roomWithIssues.room.id" :user="this.user"></AddIssueForm>
-        <ListIssues :listIssues="roomWithIssues.issues"></ListIssues>
     </div>
 </template>
 

@@ -1,15 +1,21 @@
 <template>
     <div id="listUsers">
-        <div class="card margin-item" v-for="user in listUsers" :key="user.id">
-            <div class="card-body">
-                <div class="row">
-                    <h5>{{ user.firstName + ' ' + user.lastName }}</h5>
+        <div class="row">
+            <div class="col-12">
+                <div class="card" v-for="user in listUsers" :key="user.id">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-10">
+                                <h4>{{ user.firstName + ' ' + user.lastName }}</h4>
+                                <div class="text-muted align-middle"> Email: {{ user.email }} </div>
+                            </div>
+                            <div class="btn-group-sm btn-group-form col-2 text-right" role="group">
+                                <button class="btn btn-danger" @click="deleteUser(user)"><i class="fa fa-trash-o fa-lg" style="font-size:24px"></i></button>
+                            </div>
+                        </div>
+                        <AssignRole :roles="roles" :rooms="rooms" :user="user"></AssignRole>
+                    </div>
                 </div>
-                <div class="row">
-                    <div class="card-subtitle mb-1 text-muted col-10"> Email: {{ user.email }} </div>
-                    <button @click="deleteUser(user)" class="btn-border btn-sm">Delete</button>
-                </div>
-                <AssignRole :roles="roles" :rooms="rooms" :user="user"></AssignRole>
             </div>
         </div>
     </div>
@@ -50,7 +56,7 @@ export default {
             });
         }
     },
-    beforeMount() {
+    mounted() {
         this.loadRoles();
         this.loadRooms();
     }
