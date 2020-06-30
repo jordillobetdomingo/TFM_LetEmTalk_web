@@ -42,14 +42,15 @@ export default {
             if (this.roleSelected.createRoom) {
                 this.axios.post("/role/user/", {"userId": this.user.id, "roleId": this.roleSelected.id })
                 .then(() => {
-                    alert("the role has been assigned correctly");
+                    alert("The role has been assigned correctly");
                 });
             } else {
                 this.axios.post("/role/user/", {"userId": this.user.id, "roleId": this.roleSelected.id, "roomId": this.roomSelected.roomId })
                 .then(() => {
-                    alert("the role has been assigned correctly");
+                    alert("The role has been assigned correctly");
                 });
             }
+            this.showPermissionForm = false;
             event.preventDefault();
         },
         reset(event) {
@@ -66,6 +67,11 @@ export default {
 #AssignRoleForm {
     padding-top: 1rem;
     padding-bottom: 1rem;
+}
+
+.btn-group-form {
+    padding-top: 0;
+    margin-bottom: 1rem;
 }
 
 </style>

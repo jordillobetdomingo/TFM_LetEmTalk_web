@@ -9,7 +9,7 @@
             </div>
         
             <div class="row">
-                <div class="col-12">
+                <div class="col-12 text-justify">
                     {{pill.text}}
                 </div>
             </div>
@@ -23,7 +23,7 @@
             <form>
             <div class="form-group">
                 <label for="text">Comment</label>
-                <textarea name="text" class="form-control" v-model="textEdit"/>
+                <textarea name="text" class="form-control" v-model="textEdit" maxlength="2000" rows="5"/>
             </div>
             <div class="btn-group-sm btn-group-form">
                 <button @click="editPill($event)" class="btn btn-secondary">Save</button>

@@ -18,7 +18,7 @@
                         </div>
                         <div class="form-group">
                             <label for="text">Comment</label>
-                            <textarea name="text" class="form-control" v-model="textPill"/>
+                            <textarea name="text" class="form-control" v-model="textPill" rows="7" maxlength="2000"/>
                         </div>
                         <div class="btn-group-sm btn-group-form">
                             <button class="btn btn-secondary" @click="addIssue($event)">Save</button>

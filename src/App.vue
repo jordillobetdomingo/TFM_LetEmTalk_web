@@ -44,6 +44,9 @@ export default {
       .then(response => {
         this.user = response.data;
         this.userIdentified = true;
+        if (this.user.isAdmin) {
+          this.$router.push("/users/");
+        }
       })
       .catch(error => {
           console.log(error);

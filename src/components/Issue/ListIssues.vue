@@ -7,7 +7,7 @@
                     <p class="card-subtitle mb-1 text-muted text-center col-3"> Author {{ issue.firstNameAuthor + ' ' + issue.lastNameAuthor}} </p>
                     <p class="card-subtitle mb-1 text-muted text-right col-3"><Timeago :datetime="issue.createAt"></Timeago> </p>
                 </div>
-                <p class="card-text"> {{ issue.text}} </p>
+                <p class="card-text text-justify"> {{ issue.text}} </p>
                 <div><router-link class="cardd-link" :to="'/issue/' + issue.issueId + '/'">See all comments</router-link></div>
             </div>
         </div>

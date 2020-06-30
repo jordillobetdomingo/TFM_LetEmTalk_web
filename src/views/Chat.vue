@@ -20,7 +20,7 @@ import ListRooms from '@/components/Room/ListRooms'
 
 export default {
     name: "chat",
-    props: {user: Object},
+    props: { user: Object },
     data() {
         return {
             listRooms: []
@@ -44,7 +44,7 @@ export default {
                 });
         }
     },
-    mounted() {
+    beforeMount() {
         if (this.user.isAdmin) {
             this.$router.push('/users/');
         } else {

@@ -10,7 +10,7 @@
                 <div class="col-11"></div>
                 <div class="col-1 justify-content-end">
                     <div class="btn-group-sm btn-group-form" role="group">
-                        <button class="btn btn-add" @click="showUserForm = !showUserForm"><i class="fa fa-plus fa-lg" style="font-size:24px"></i></button>
+                        <button class="btn btn-add" @click="showUserForm = !showUserForm"><i class="fa fa-plus" style="font-size:24px"></i></button>
                     </div>
                 </div>
             </div>
